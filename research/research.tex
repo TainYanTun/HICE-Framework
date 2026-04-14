@@ -31,12 +31,12 @@
 
 % --- Abstract ---
 \begin{abstract}
-Since the unconstitutional seizure of power in February 2021, Myanmar has descended into a complex, multi-sided armed conflict characterized by the fragmentation of state authority. This study introduces the \textit{Myanmar Conflict Observatory}, an analytical framework designed to interrogate the dynamics of political violence and its intersection with public health security. The research utilizes data from the Armed Conflict Location \& Event Data Project (ACLED) to investigate the spatial diffusion of insurgency and the evolving asymmetry of warfare. Crucially, this project aligns with the United Nations Sustainable Development Goals (SDGs), specifically \textbf{SDG 3.d (Health Risk Monitoring)}. By employing Natural Language Processing (NLP) and statistical anomaly detection, the system identifies conflict events that pose immediate threats to health infrastructure, providing a predictive tool for humanitarian response. The full codebase is available at: \href{https://github.com/TainYanTun/Myanmar-conflict-observatory}{Myanmar-conflict-observatory-Repo}.
+Since the unconstitutional seizure of power in February 2021, Myanmar has descended into a complex, multi-sided armed conflict characterized by the fragmentation of state authority. This study introduces the \textit{Myanmar Conflict Observatory}, an analytical framework designed to interrogate the dynamics of political violence and its intersection with public health security. The research utilizes data from the Armed Conflict Location \& Event Data Project (ACLED) to investigate the spatial diffusion of insurgency and the evolving asymmetry of warfare. Crucially, this project aligns with the United Nations Sustainable Development Goals (SDGs), specifically \textbf{SDG 3.d (Health Risk Monitoring)}. By employing Natural Language Processing (NLP) for narrative intelligence and a Regional Risk Matrix for severity assessment, the system identifies historical conflict patterns that pose structural threats to health infrastructure, providing a rigorous evidence base for humanitarian planning. The full codebase is available at: \href{https://github.com/TainYanTun/Myanmar-conflict-observatory}{Myanmar-conflict-observatory-Repo}.
 \end{abstract}
 
 % --- Keywords ---
 \begin{IEEEkeywords}
-Myanmar Conflict, ACLED, SDG 3, NLP, Anomaly Detection, Geospatial Analysis.
+Myanmar Conflict, ACLED, SDG 3, NLP, Regional Risk Matrix, Geospatial Analysis, Historical Analysis.
 \end{IEEEkeywords}
 
 % --- Section I: Introduction ---
@@ -59,7 +59,7 @@ The framework utilizes a multi-dimensional analytical framework to pursue five p
 
     \item \textbf{Actor Interaction Networks (Graph Theory):} To model the conflict as a dynamic social network. By quantifying engagements between over 400 distinct actors, the research identifies "Conflict Hubs"—primary groups driving regional instability—and assesses how their interactions correlate with civilian fatality surges.
 
-    \item \textbf{Statistical Anomaly Detection:} To move beyond historical logging and provide predictive utility. Using rolling statistical baselines, the system identifies regional surges in violence ($Z > 1.5$) that deviate from historical means, serving as a leading indicator for humanitarian health crises.
+    \item \textbf{Regional Risk Matrix:} To provide a comparative spatial assessment of conflict severity. By computing a Severity Index (Fatalities per Event) and plotting administrative regions on a Frequency vs. Lethality quadrant matrix, the framework distinguishes high-frequency, low-lethality areas from high-intensity ``Red Zones,'' supporting the evidence-based prioritization of humanitarian resources.
 
     \item \textbf{Semantic Narrative Intelligence (NLP):} To decode the "Nature of Violence" through Natural Language Processing. By extracting narrative keywords from event notes, the study distinguishes between different modes of warfare (e.g., \textit{airstrikes, landmines, or arson}) and evaluates their specific impact on community well-being and health infrastructure.
 
@@ -99,22 +99,18 @@ To align tactical conflict data with SDG 3.d, the framework incorporates a Natur
     \item \textbf{Systemic Well-being Analysis:} Beyond direct infrastructure damage, the system further identifies events involving sexual violence, abduction, or looting. These incidents are categorized as systemic threats to community health and well-being, consistent with the broader health security dimensions articulated in SDG 3.3 and SDG 3.8.
 \end{itemize}
 
-\subsection{Statistical Predictive Engine}
+\subsection{Regional Risk Matrix and Severity Assessment}
 
-The framework transitions from descriptive analysis to predictive analytics through two core statistical models:
+The framework produces a comparative regional severity assessment through two complementary analytical outputs:
 
 \begin{enumerate}
-    \item \textbf{Anomaly Detection:} To identify abnormal surges in conflict events, the system computes a regional Z-score based on a 90-day rolling baseline of event frequency \cite{aggarwal_outlier_2017}. The standardized score is defined as:
+    \item \textbf{Severity Index:} For each administrative region, a Severity Index is computed as the ratio of total verified fatalities to total conflict events:
     \[
-    Z = \frac{X - \mu}{\sigma}
+    \text{Severity Index} = \frac{\text{Total Fatalities}}{\text{Total Events}}
     \]
-    where $X$ represents the observed number of events in a region during the current period, $\mu$ denotes the mean event frequency over the 90-day baseline, and $\sigma$ represents the corresponding standard deviation. Observations where $Z > 1.5$ are flagged as \textit{Kinetic Anomalies}, indicating a heightened probability of imminent healthcare disruption.
+    A score exceeding 1.0 indicates that, on average, every engagement in that region results in at least one confirmed death, identifying it as a high-intensity combat zone requiring prioritized humanitarian attention.
 
-    \item \textbf{Fatality Projection:} Short-term fatality projections are estimated using a least-squares linear regression model applied to the most recent four-week temporal window \cite{cederman_modeling_2014}.
-    \[
-    y = \beta_0 + \beta_1 x + \epsilon
-    \]
-    where $y$ represents the projected number of fatalities, $x$ denotes time, $\beta_0$ is the intercept, $\beta_1$ is the slope coefficient estimated using the least-squares method, and $\epsilon$ represents the error term. The model is used to generate a 7-day forward projection to support early warning assessments for humanitarian responders.
+    \item \textbf{Frequency vs. Lethality Matrix:} Administrative regions are plotted on a two-dimensional quadrant matrix with event frequency on the horizontal axis and the Severity Index on the vertical axis. Bubble size represents the total fatality volume. This visualization enables analysts to differentiate ``High-Frequency, Low-Lethality'' zones from ``Low-Frequency, High-Lethality'' Red Zones, facilitating evidence-based allocation of humanitarian medical resources.
 \end{enumerate}
 
 \subsection{Presentation and High-Resolution Export Layer}
@@ -217,15 +213,8 @@ The Myanmar Conflict Observatory transitions from general conflict monitoring to
 \subsection{Temporal Trend: Health-Impacting Incidents}
 Longitudinal analysis of HICE data indicates a \textbf{30\% increase} in the rate of medical infrastructure disruption since mid-2023. This escalation correlates strongly with the growing prevalence of "Remote Violence" events. NLP-based keyword extraction further reveals persistent patterns of medical targeting, with high-frequency terms such as \textit{hospital} (854 mentions), \textit{wounded} (795), and \textit{medical} (310) serving as thematic anchors. The Trend employs "dual-crisis": a high-lethality conventional war occurring alongside systemic damage to the social and medical foundations of civilian communities.
 
-\subsection{Fatality Trajectory and Risk Projection}
-The observatory extends beyond historical documentation by incorporating a predictive analytical framework. Using a least-squares linear regression model applied to a four-week temporal window, the system produces \textbf{seven-day forward projections} of fatality trends. The projection chart (Fig. \ref{fig:fatality_projection}) classifies national conflict momentum as either "Escalating" or "Stable," enabling analysts to estimate short-term humanitarian needs and emergency health service demand.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=\columnwidth]{assets/fatality_projection.png}
-    \caption{Fatality Trajectory and Risk Projection utilizing regression-based forecasting.}
-    \label{fig:fatality_projection}
-\end{figure}
+\subsection{Historical Fatality Trajectory}
+Longitudinal analysis of verified fatalities reveals a sustained upward trend across the observation period. Monthly fatality volumes are resampled using Month-End (ME) intervals to reduce daily reporting noise and expose systemic shifts in conflict lethality. As illustrated in the temporal frequency analysis (Fig. \ref{fig:temporal_frequency}), this trajectory documents the progressive intensification of kinetic engagements and provides a historical evidence base for assessing the cumulative burden placed on healthcare systems across the most affected regions.
 
 \subsection{Regional Risk Matrix}
 To prioritize humanitarian response, the framework calculates a \textbf{Vulnerability Score} for each administrative region using the weighted formula:
@@ -253,7 +242,7 @@ The strong correlation identified between "Remote Violence" (airstrikes, shellin
 
 While the ACLED dataset provides the most comprehensive real-time monitoring available, the analytical findings must be interpreted within the constraints of the data environment. As noted in the introduction, the dataset represents a "verified floor." In regions under strict communication blackouts (e.g., deep rural Sagaing or Rakhine), the actual incidence of violence and health disruption is likely significantly higher than reported. 
 
-Furthermore, the predictive models employed (Z-score anomaly detection and linear regression) assume a degree of historical continuity. However, sudden political shocks—such as new alliances between EAOs or major military offensives—can deviate sharply from rolling baselines, potentially reducing the accuracy of short-term projections during periods of extreme instability. Finally, the NLP engine, while robust, relies on the quality of unstructured text notes; vague reporting in source media may lead to under-classification of health-impacting events, necessitating manual verification for critical alerts.
+Furthermore, the statistical models employed—including the Severity Index and the Frequency vs. Lethality matrix—capture historical patterns and cannot anticipate sudden political shocks, such as new EAO alliances or major military offensives that deviate from established trends. The NLP engine, while robust, relies on the quality of unstructured text notes; vague or incomplete reporting in source media may lead to under-classification of health-impacting events, necessitating manual verification for critical research outputs.
 
 % --- Section VIII: Policy and Humanitarian Implications ---
 \section{Policy and Humanitarian Implications}
@@ -283,10 +272,10 @@ While rigorous data engineering and NLP techniques are employed to ensure accura
 % --- Section X: Conclusion ---
 \section{Conclusion}
 
-The \textit{Myanmar Conflict Observatory} establishes a rigorous analytical framework for decoding the complex evolution of political violence in post-coup Myanmar. By synthesizing high-frequency georeferenced data with Natural Language Processing and statistical modeling, this study moves beyond conventional descriptive logging to offer predictive intelligence regarding the intersection of armed conflict and public health security. The findings reveal a definitive structural shift from urban civil disobedience to a prolonged rural insurgency, characterized by a decentralized resistance network and an increasing reliance on remote warfare tactics.
+The \textit{Myanmar Conflict Observatory} establishes a rigorous analytical framework for decoding the complex evolution of political violence in post-coup Myanmar. By synthesizing high-frequency georeferenced data with Natural Language Processing and the Regional Risk Matrix, this study provides a comprehensive historical analysis of the intersection of armed conflict and public health security. The findings reveal a definitive structural shift from urban civil disobedience to a prolonged rural insurgency, characterized by a decentralized resistance network and an increasing reliance on remote warfare tactics.
 \section{SDG 3 Analysis and Health Risk}
 \label{sec:sdg3}
-Crucially, the identification of a strong spatial correlation between kinetic engagements and health-impacting incidents underscores the systematic degradation of medical infrastructure. Furthermore, a narrative audit of the dataset reveals a massive "Displacement Tail," with over 3,131 events explicitly documenting civilians fleeing or being displaced, signifying a secondary humanitarian crisis that often exceeds verified fatality counts. The observatory's ability to identify "Red Zones" and detect kinetic anomalies provides a vital mechanism for humanitarian actors, directly contributing to the objectives of SDG 3.d.
+Crucially, the identification of a strong spatial correlation between kinetic engagements and health-impacting incidents underscores the systematic degradation of medical infrastructure. Furthermore, a narrative audit of the dataset reveals a massive ``Displacement Tail,'' with over 3,131 events explicitly documenting civilians fleeing or being displaced, signifying a secondary humanitarian crisis that often exceeds verified fatality counts. The observatory's Regional Risk Matrix and HICE detection capabilities provide a vital evidence-based mechanism for humanitarian actors to identify and prioritize ``Red Zones,'' directly contributing to the objectives of SDG 3.d.
 % --- Section XI: Acknowledgment ---
 \section{Acknowledgment}
 
