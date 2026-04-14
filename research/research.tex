@@ -242,6 +242,14 @@ The strong correlation identified between "Remote Violence" (airstrikes, shellin
 
 While the ACLED dataset provides the most comprehensive real-time monitoring available, the analytical findings must be interpreted within the constraints of the data environment. As noted in the introduction, the dataset represents a "verified floor." In regions under strict communication blackouts (e.g., deep rural Sagaing or Rakhine), the actual incidence of violence and health disruption is likely significantly higher than reported. 
 
+\subsection{Justification for Excluding Short-Term Predictive Models}
+A deliberate methodological decision was made to exclude short-term predictive engines—specifically Z-score anomaly detection and least-squares regression-based fatality projection—from the analytical framework. This exclusion is justified on three interconnected grounds:
+\begin{enumerate}
+    \item \textbf{Verification Lag:} The ACLED dataset for high-complexity conflict environments is subject to an approximate 12-month verification lag \cite{acledmethodmyanmar}. Applying a 7-day forward projection to data with a 12-month delay is temporally incoherent; it extrapolates a historical period rather than forecasting the near future.
+    \item \textbf{Conflict Volatility:} Myanmar's operational landscape is subject to sudden, exogenous shocks (e.g., large-scale EAO offensives) that violate the assumptions of linear regression. A rolling-window baseline calibrated on pre-shock periods systematically misrepresents post-shock conflict intensity.
+    \item \textbf{Analytical Focus:} The comparative advantage of this observatory lies in structural historical pattern analysis, rather than real-time operational forecasting. The Frequency vs. Lethality Risk Matrix and the Severity Index are designed to reveal persistent vulnerabilities to inform long-term strategy rather than ephemeral logistics.
+\end{enumerate}
+
 Furthermore, the statistical models employed—including the Severity Index and the Frequency vs. Lethality matrix—capture historical patterns and cannot anticipate sudden political shocks, such as new EAO alliances or major military offensives that deviate from established trends. The NLP engine, while robust, relies on the quality of unstructured text notes; vague or incomplete reporting in source media may lead to under-classification of health-impacting events, necessitating manual verification for critical research outputs.
 
 % --- Section VIII: Policy and Humanitarian Implications ---
