@@ -32,12 +32,12 @@
 
 % --- Abstract ---
 \begin{abstract}
-Since the unconstitutional seizure of power in February 2021, Myanmar has descended into a complex, multi-sided armed conflict characterized by the fragmentation of state authority. This study introduces the \textit{Myanmar Conflict Observatory}, an analytical framework designed to interrogate the dynamics of political violence and its intersection with public health security. The research utilizes data from the Armed Conflict Location \& Event Data Project (ACLED) to investigate the spatial diffusion of insurgency and the evolving asymmetry of warfare. Crucially, this project aligns with the United Nations Sustainable Development Goals (SDGs), specifically \textbf{SDG 3.d (Health Risk Monitoring)}. By employing Natural Language Processing (NLP) for narrative intelligence and a Regional Risk Matrix for severity assessment, the system identifies historical conflict patterns that pose structural threats to health infrastructure, providing a rigorous evidence base for humanitarian planning. The full codebase is available at: \href{https://github.com/TainYanTun/Myanmar-conflict-observatory}{Myanmar-conflict-observatory-Repo}.
+    Since the unconstitutional seizure of power in February 2021, Myanmar has descended into a complex, multi-sided armed conflict characterized by the fragmentation of state authority. This study introduces the \textit{Myanmar Conflict Observatory}, an analytical framework designed to interrogate the dynamics of political violence and its intersection with public health security. The research utilizes data from the Armed Conflict Location \& Event Data Project (ACLED) to investigate the spatial diffusion of insurgency and the evolving asymmetry of warfare. Crucially, this project aligns with the United Nations Sustainable Development Goals (SDGs), specifically \textbf{SDG 3.d (Health Risk Monitoring)}. By employing Natural Language Processing (NLP) for narrative intelligence and a Regional Risk Matrix for severity assessment, the system identifies historical conflict patterns that pose structural threats to health infrastructure, providing a rigorous evidence base for humanitarian planning. The full codebase is available at: \href{https://github.com/TainYanTun/Myanmar-conflict-observatory}{Myanmar-conflict-observatory-Repo}.
 \end{abstract}
 
 % --- Keywords ---
 \begin{IEEEkeywords}
-Myanmar Conflict, ACLED, SDG 3, NLP, Regional Risk Matrix, Geospatial Analysis, Historical Analysis.
+    Myanmar Conflict, ACLED, SDG 3, NLP, Regional Risk Matrix, Geospatial Analysis, Historical Analysis.
 \end{IEEEkeywords}
 
 % --- Section I: Introduction ---
@@ -47,15 +47,15 @@ The political trajectory of Myanmar underwent a profound transformation followin
 
 In such environments, systematic analysis of conflict dynamics is essential for understanding patterns of violence and their broader societal consequences. This study introduces the \textit{Myanmar Conflict Observatory}, a data-driven analytical framework designed to examine the spatial and temporal distribution of political violence in Myanmar. Initially, this project was conceived as a secondary initiative aimed at applying my technical skills in data engineering and data science. However, under the academic auspices of the Big Data course at Asia Pacific International University, the initiative evolved into an opportunity to connect these technical competencies with topics of intellectual interest while contributing, albeit indirectly, to broader societal development.
 
-While the central thrust of this research concerns the evolution of conflict dynamics, the repercussions of sustained political violence inevitably extend beyond the immediate theater of war, precipitating critical secondary effects such as the collapse of healthcare access and heightened vulnerability to public health emergencies. Contextualizing these findings within \textbf{the United Nations Sustainable Development Goals (SDGs)} therefore offers a vital lens for interrogating these broader humanitarian implications. To this end, the study explicitly aligns with SDG 3 (Good Health and Well-being), focusing on Target 3.d to illuminate the intersection between political instability and the urgent need for early warning mechanisms. 
+While the central thrust of this research concerns the evolution of conflict dynamics, the repercussions of sustained political violence inevitably extend beyond the immediate theater of war, precipitating critical secondary effects such as the collapse of healthcare access and heightened vulnerability to public health emergencies. Contextualizing these findings within \textbf{the United Nations Sustainable Development Goals (SDGs)} therefore offers a vital lens for interrogating these broader humanitarian implications. To this end, the study explicitly aligns with SDG 3 (Good Health and Well-being), focusing on Target 3.d to illuminate the intersection between political instability and the urgent need for evidence-based humanitarian risk monitoring
 
-To operationalize this framework, the underlying dataset was subjected to a rigorous process of curation, validation, and analytical structuring, achieved through a collaborative endeavor with my colleague, Kyaw Zay Aung. It is crucial to acknowledge at the outset that this data represents a ``verified floor'' rather than a final ceiling; due to communication blackouts and restricted access in active conflict zones, the actual incidence of violence is likely higher than reported. Nevertheless, by synthesizing this high-fidelity georeferenced data with advanced computational methodologies, the observatory establishes a systematic infrastructure for the surveillance of hostilities in fragile environments. This approach not only tracks the spatial diffusion of violence but also delineates emergent risk patterns, thereby furnishing humanitarian stakeholders with the predictive insights necessary for strategic intervention. 
+To operationalize this framework, the underlying dataset was subjected to a rigorous process of curation, validation, and analytical structuring, achieved through a collaborative endeavor with my colleague, Kyaw Zay Aung. It is crucial to acknowledge at the outset that this data represents a ``verified floor'' rather than a final ceiling; due to communication blackouts and restricted access in active conflict zones, the actual incidence of violence is likely higher than reported. Nevertheless, by synthesizing this high-fidelity georeferenced data with advanced computational methodologies, the observatory establishes a systematic infrastructure for the surveillance of hostilities in fragile environments. This approach not only tracks the spatial diffusion of violence but also delineates emergent risk patterns, thereby furnishing humanitarian stakeholders with the predictive insights necessary for strategic intervention.
 
 % --- Section II: Objectives ---
 \section{Research Objectives}
 
 The framework utilizes a multi-dimensional analytical framework to pursue five principal lines of inquiry:
-\begin{enumerate} 
+\begin{enumerate}
     \item \textbf{Geospatial Risk Modeling (SDG 3.d):} To investigate the spatial diffusion of violence relative to healthcare infrastructure. This objective focuses on mapping \textit{Health-Impacting Conflict Events (HICE)} to identify "Blind Zones" where medical access has been systematically severed by kinetic engagements.
 
     \item \textbf{Actor Interaction Networks (Graph Theory):} To model the conflict as a dynamic social network. By quantifying engagements between over 400 distinct actors, the research identifies "Conflict Hubs"—primary groups driving regional instability—and assesses how their interactions correlate with civilian fatality surges.
@@ -106,10 +106,10 @@ The framework produces a comparative regional severity assessment through two co
 
 \begin{enumerate}
     \item \textbf{Severity Index:} For each administrative region, a Severity Index is computed as the ratio of total verified fatalities to total conflict events:
-    \[
-    \text{Severity Index} = \frac{\text{Total Fatalities}}{\text{Total Events}}
-    \]
-    A score exceeding 1.0 indicates that, on average, every engagement in that region results in at least one confirmed death, identifying it as a high-intensity combat zone requiring prioritized humanitarian attention.
+          \[
+              \text{Severity Index} = \frac{\text{Total Fatalities}}{\text{Total Events}}
+          \]
+          A score exceeding 1.0 indicates that, on average, every engagement in that region results in at least one confirmed death, identifying it as a high-intensity combat zone requiring prioritized humanitarian attention.
 
     \item \textbf{Frequency vs. Lethality Matrix:} Administrative regions are plotted on a two-dimensional quadrant matrix with event frequency on the horizontal axis and the Severity Index on the vertical axis. Bubble size represents the total fatality volume. This visualization enables analysts to differentiate ``High-Frequency, Low-Lethality'' zones from ``Low-Frequency, High-Lethality'' Red Zones, facilitating evidence-based allocation of humanitarian medical resources.
 \end{enumerate}
@@ -121,12 +121,12 @@ The final layer consists of an interactive Streamlit-based graphical user interf
 % --- Section IV: Preliminary Findings (Updated) ---
 \section{Preliminary Conflict Findings}
 
-The spatiotemporal analysis of the Myanmar conflict (Feb 2021 – Feb 2025) reveals distinct patterns that characterize the current security landscape. It should be noted that all analytical outputs presented from this section onward are derived from the dataset snapshot available as of April 2, 2025. Consistent with ACLED’s 12-month data latency policy for high-complexity conflict environments, this snapshot represents the latest verified data available for rigorous academic analysis. 
+The spatiotemporal analysis of the Myanmar conflict (Feb 2021 – Feb 2025) reveals distinct patterns that characterize the current security landscape. It should be noted that all analytical outputs presented from this section onward are derived from the dataset snapshot available as of April 2, 2025. Consistent with ACLED’s 12-month data latency policy for high-complexity conflict environments, this snapshot represents the latest verified data available for rigorous academic analysis.
 
 Due to space constraints typical of conference manuscripts, not all visualizations and analytical outputs generated by the system can be included in this paper. The complete set of interactive visualizations and extended analytical views are therefore accessible through the online dashboard implementation of the Myanmar Conflict Observatory.
 
 \subsection{Geospatial Convergence: The "Sagaing-ization" of Conflict}
-The data demonstrates a significant geographical concentration of violence, revealing a specific "Center of Gravity" flip. In February 2021, the Sagaing Region accounted for only 10.5\% of national conflict events. By April 2025, this share had surged to 26.9\%. Sagaing has evolved from a peripheral resistance zone into the undeniable strategic heart of the conflict, now representing over a quarter of all kinetic activity. 
+The data demonstrates a significant geographical concentration of violence, revealing a specific "Center of Gravity" flip. In February 2021, the Sagaing Region accounted for only 10.5\% of national conflict events. By April 2025, this share had surged to 26.9\%. Sagaing has evolved from a peripheral resistance zone into the undeniable strategic heart of the conflict, now representing over a quarter of all kinetic activity.
 
 As illustrated in the Humanitarian Conflict Overlay (Fig. \ref{fig:health_conflict_overlay}), this region also accounts for the highest volume of both fatalities (approx. 25,468) and health-impacting events (927 incidents). There is a nearly 1:1 spatial correlation between high-intensity kinetic zones and incidents disrupting healthcare. This correlation identifies Sagaing as the epicenter of the health-conflict nexus, suggesting that "victory" or "stability" for either side is now inextricably tied to this single region.
 
@@ -142,31 +142,21 @@ The \textbf{Severity Index} (Fatalities per Event) allows for a high-resolution 
 
 \begin{figure*}
     \centering
-    \includegraphics[width=\textwidth]{assets/severity_assessment.png}
+    \includegraphics[width=\textwidth]{assets/risk_matrix.png}
     \caption{Regional Severity Assessment indicating high-lethality "Red Zones" versus high-frequency conflict areas across Myanmar.}
     \label{fig:severity_assessment}
 \end{figure*}
 
-\subsection{Conflict Frequency and Impact Over Time}
-The Temporal Conflict Expansion analysis reveals a structural shift in the conflict’s topology. In the initial three months (Feb–Apr 2021), fatalities were relatively low (2,716) and largely concentrated in urban administrative centers. However, by the most recent period, fatalities increased by over 30\% (3,561), with the conflict diffusing into 74 distinct administrative regions. As shown in Fig. \ref{fig:temporal_frequency}, this diffusion depicts a "Ruralization of Resistance," where what began as urban civil disobedience has transformed into a widespread rural insurgency, significantly stretching the reach of medical supply chains.
-
-\begin{figure*}
-    \centering
-    \includegraphics[width=\textwidth]{assets/temporal_frequency.png}
-    \caption{Conflict Frequency and Impact Over Time: A dual-axis view showing the expansion of event frequency and the corresponding fatality trajectory.}
-    \label{fig:temporal_frequency}
-\end{figure*}
-
 \subsection{Seasonality: The "Dry Season Offensive" Cycle}
-Distinct from the overall expansion trend, a clear seasonality pattern exists across the 2021–2025 period, highlighting a "mechanical" rhythm tied to environmental conditions. 
-Analysis indicates a consistent peak during the dry season (November to March), where conflict events climb from approximately 7,009 in November to nearly 8,000 in February. 
-Conversely, there is a sharp drop-off of roughly 25\% during the monsoon season (April to July), hitting a low of 5,870 events in July. 
+Distinct from the overall expansion trend, a clear seasonality pattern exists across the 2021–2025 period, highlighting a "mechanical" rhythm tied to environmental conditions.
+Analysis indicates a consistent peak during the dry season (November to March), where conflict events climb from approximately 7,009 in November to nearly 8,000 in February.
+Conversely, there is a sharp drop-off of roughly 25\% during the monsoon season (April to July), hitting a low of 5,870 events in July.
 This cyclical pattern suggests that the weather acts as a natural de-escalation mechanism. The February/March peak represents the primary "offensive window" for both state and resistance forces, while the Monsoon season serves as a period of regrouping and reduced kinetic activity, influencing the timing of humanitarian resource allocation.
 
 \subsection{Tactical Evolution: Drones and Chokepoint Warfare}
 Analysis of engagement types reveals a tactical evolution characterized by "Technological Leapfrogging." By extracting keywords such as "drone," "UAV," and "Shar Htoo Waw" from event notes, a massive shift was identified. Drone-related events grew from fewer than 5 per month in mid-2021 to a peak of 142 per month in January 2025—a 30x increase. However, a "Drone Paradox" is observed: average fatalities in drone-led events (1.68) are lower than in traditional kinetic engagements (1.88), suggesting their use is primarily for "Standoff Harassment" and "Psychological Attrition."
 
-Simultaneously, the conflict has shifted from "territorial control" to "access denial." Mentions of infrastructure keywords—\textit{Bridge}, \textit{Highway}, \textit{Gate}, and \textit{Telecommunication Tower}—have increased by 45\% since 2023. This "Chokepoint Warfare" indicates a strategic pivot by resistance forces to isolate junta-held urban centers by destroying logistics nodes, effectively "sieging" administrative capacity without requiring direct urban combat. This increases the risk of long-term health crises by disrupting supply chains for medicine and food.
+Simultaneously, the conflict has shifted from "territorial control" to "access denial." Mentions of infrastructure keywords—\linebreak[0]\textit{Bridge}, \textit{Highway}, \textit{Gate}, and \textit{Telecommunication Tower}—have increased by 45\% since 2023. This "Chokepoint Warfare" indicates a strategic pivot by resistance forces to isolate junta-held urban centers by destroying logistics nodes, effectively "sieging" administrative capacity without requiring direct urban combat. This increases the risk of long-term health crises by disrupting supply chains for medicine and food.
 
 \begin{figure}
     \centering
@@ -183,9 +173,9 @@ The observatory identifies a complex restructuring of armed groups. While macro-
 
 \begin{itemize}
     \item \textbf{The "Joint Operation" Bloom:} In 2021, only 4\% of Resistance events mentioned an EAO as an "Associate Actor." By 2025, this jumped to over 22\%. This proves the resistance has evolved into a "Hybrid Force," where EAOs provide heavy weaponry and training while PDFs provide local manpower.
-    
+
     \item \textbf{The "Splintering" Index:} The number of unique "Resistance" group names (e.g., "Monywa PDF," "Tiger Force") has grown by 200\% since 2022, even when battle frequency remained flat. This "Fragmentation Pattern" suggests a "constellation" of independent units. While regex-based audits show professionalization (e.g., "Battalion 1" appears in 300+ logs), the broader proliferation of names indicates a decentralized structure that is impossible to "decapitate" via a single strike.
-    
+
     \item \textbf{Proxy Proliferation:} The state side exhibits "outsourcing." Mentions of "Pyu Saw Htee" and "People's Militia" have increased by 38\% in the Northwest (Sagaing/Magway) as "Military Forces of Myanmar" relative share decreases. This suggests a shift from a "State vs. People" war to a "Local vs. Local" proxy war, where militias act as "deniable" forces for village raids, increasing local instability.
 \end{itemize}
 
@@ -201,13 +191,13 @@ Beyond the immediate tactical engagements, a dangerous "Retaliatory Lag" pattern
 This "tit-for-tat" cycle suggests that state forces or local militias (Pyu Saw Htee) target non-combatants immediately following a kinetic loss or clash with the PDF. This punitive pattern transforms the conflict from a purely military contest into a cycle of retribution that disproportionately endangers medical personnel and civilians.
 
 \subsection{Data Asymmetries: The "Information Blind Spot" and "Verification Gap"}
-The actor interaction analysis reveals a significant reporting gap. The data shows high interaction counts for "State Forces vs. Civilians" (20,653 events) and "Protesters vs. Unidentified" (14,074 events). 
+The actor interaction analysis reveals a significant reporting gap. The data shows high interaction counts for "State Forces vs. Civilians" (20,653 events) and "Protesters vs. Unidentified" (14,074 events).
 Crucially, "Resistance vs. State Forces" appears nearly three times more frequently than "State Forces vs. Resistance," suggesting resistance-initiated attacks are more likely to be logged, whereas state-initiated operations are often obfuscated.
 
 Furthermore, a "Fatalities Gap" exists based on the \texttt{source} column. Events reported by Local/Pro-Resistance media report an average of 2.4 fatalities per event, while International/Human Rights sources report only 1.1 fatalities. This "Verification Gap" implies that nearly 50\% of fatalities captured in real-time by local observers are "filtered" or "lost" by the time they reach international verification standards, creating a significant "Unverified Surplus" that official statistics likely undercount.
 
 % --- Section V: SDG 3 Analysis (Updated) ---
-\section{SDG 3 Analysis and Health Risk Early Warning}
+\section{SDG 3 Analysis and Health Risk Assessment}
 
 The Myanmar Conflict Observatory transitions from general conflict monitoring to humanitarian risk assessment through a dedicated analytical layer aligned with \textbf{UN SDG Target 3.d}. This framework employs an NLP engine to identify \textbf{Health-Impacting Conflict Events (HICE)}, detecting more than \textbf{15,000 incidents} that directly threaten medical infrastructure or broader human well-being.
 
@@ -217,31 +207,31 @@ Longitudinal analysis of HICE data indicates a \textbf{30\% increase} in the rat
 \subsection{Historical Fatality Trajectory}
 Longitudinal analysis of verified fatalities reveals a sustained upward trend across the observation period. Monthly fatality volumes are resampled using Month-End (ME) intervals to reduce daily reporting noise and expose systemic shifts in conflict lethality. As illustrated in the temporal frequency analysis (Fig. \ref{fig:temporal_frequency}), this trajectory documents the progressive intensification of kinetic engagements and provides a historical evidence base for assessing the cumulative burden placed on healthcare systems across the most affected regions.
 
+\begin{figure*}
+    \centering
+    \includegraphics[width=\textwidth]{assets/temporal_frequency.png}
+    \caption{Historical Fatality Trajectory showing monthly fatality surges resampled by Month-End (ME) intervals.}
+    \label{fig:temporal_frequency}
+\end{figure*}
+
 \subsection{Regional Risk Matrix}
 To prioritize humanitarian response, the framework calculates a \textbf{Vulnerability Score} for each administrative region using the weighted formula:
 \[
-\text{Score} = (0.7 \times \text{Health Events}) + (0.3 \times \text{Fatalities})
+    \text{Score} = (0.7 \times \text{Health Events}) + (0.3 \times \text{Fatalities})
 \]
-This composite metric identifies the \textbf{Sagaing Region} as the most critical "Red Zone" for health assistance, while also highlighting elevated vulnerability in \textbf{Kayah} and \textbf{Rakhine}. The Regional Risk Matrix (Fig. \ref{fig:risk_matrix}) employs a quadrant-based view (Event Frequency vs. Lethality) to differentiate high-frequency conflict zones from high-lethality areas, supporting the prioritization of humanitarian medical resources.
-
-\begin{figure*}
-    \centering
-    \includegraphics[width=\textwidth]{assets/risk_matrix.png}
-    \caption{Regional Risk Matrix (Event Frequency vs. Lethality) identifying high-priority zones for humanitarian health assistance.}
-    \label{fig:risk_matrix}
-\end{figure*}
+This composite metric identifies the \textbf{Sagaing Region} as the most critical "Red Zone" for health assistance, while also highlighting elevated vulnerability in \textbf{Kayah} and \textbf{Rakhine}. As previously illustrated in the Regional Severity Assessment (Fig. \ref{fig:severity_assessment}), the quadrant-based view (Event Frequency vs. Lethality) distinguishes high-frequency conflict zones from high-lethality areas, supporting the evidence-based prioritization of humanitarian medical resources.
 
 % --- Section VI: Discussion ---
 \section{Discussion}
 
-The findings from the Myanmar Conflict Observatory underscore a critical transformation in the nature of warfare in Southeast Asia. The observed "Ruralization of Resistance" suggests that the conflict has moved beyond the initial contestation of urban centers into a protracted struggle in the periphery. This diffusion has profound implications for SDG 3.d: as violence spreads into remote areas, the "Blind Zones"—regions where state authority and NGO access have evaporated—expand correspondingly. 
+The findings from the Myanmar Conflict Observatory underscore a critical transformation in the nature of warfare in Southeast Asia. The observed "Ruralization of Resistance" suggests that the conflict has moved beyond the initial contestation of urban centers into a protracted struggle in the periphery. This diffusion has profound implications for SDG 3.d: as violence spreads into remote areas, the "Blind Zones"—regions where state authority and NGO access have evaporated—expand correspondingly.
 
 The strong correlation identified between "Remote Violence" (airstrikes, shelling) and health-impacting incidents validates the hypothesis that modern asymmetric warfare in Myanmar disproportionately affects civilian infrastructure. Unlike ground battles, remote violence lacks the precision to spare medical facilities, leading to the systemic degradation of health surge capacity. This validates the utility of the HICE detection model; by automatically flagging events where terms like "wounded" or "hospital" appear, the system provides a rapid, albeit grim, assessment of areas likely to require immediate trauma care intervention.
 
 % --- Section VII: Limitations of the Study ---
 \section{Limitations of the Study}
 
-While the ACLED dataset provides the most comprehensive real-time monitoring available, the analytical findings must be interpreted within the constraints of the data environment. As noted in the introduction, the dataset represents a "verified floor." In regions under strict communication blackouts (e.g., deep rural Sagaing or Rakhine), the actual incidence of violence and health disruption is likely significantly higher than reported. 
+While the ACLED dataset provides the most comprehensive real-time monitoring available, the analytical findings must be interpreted within the constraints of the data environment. As noted in the introduction, the dataset represents a "verified floor." In regions under strict communication blackouts (e.g., deep rural Sagaing or Rakhine), the actual incidence of violence and health disruption is likely significantly higher than reported.
 
 \subsection{Justification for Excluding Short-Term Predictive Models}
 A deliberate methodological decision was made to exclude short-term predictive engines—specifically Z-score anomaly detection and least-squares regression-based fatality projection—from the analytical framework. This exclusion is justified on three interconnected grounds:
@@ -282,9 +272,6 @@ While rigorous data engineering and NLP techniques are employed to ensure accura
 \section{Conclusion}
 
 The \textit{Myanmar Conflict Observatory} establishes a rigorous analytical framework for decoding the complex evolution of political violence in post-coup Myanmar. By synthesizing high-frequency georeferenced data with Natural Language Processing and the Regional Risk Matrix, this study provides a comprehensive historical analysis of the intersection of armed conflict and public health security. The findings reveal a definitive structural shift from urban civil disobedience to a prolonged rural insurgency, characterized by a decentralized resistance network and an increasing reliance on remote warfare tactics.
-\section{SDG 3 Analysis and Health Risk}
-\label{sec:sdg3}
-Crucially, the identification of a strong spatial correlation between kinetic engagements and health-impacting incidents underscores the systematic degradation of medical infrastructure. Furthermore, a narrative audit of the dataset reveals a massive ``Displacement Tail,'' with over 3,131 events explicitly documenting civilians fleeing or being displaced, signifying a secondary humanitarian crisis that often exceeds verified fatality counts. The observatory's Regional Risk Matrix and HICE detection capabilities provide a vital evidence-based mechanism for humanitarian actors to identify and prioritize ``Red Zones,'' directly contributing to the objectives of SDG 3.d.
 % --- Section XI: Acknowledgment ---
 \section{Acknowledgment}
 
