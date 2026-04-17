@@ -60,11 +60,9 @@ The framework utilizes a multi-dimensional analytical framework to pursue five p
 
     \item \textbf{Actor Interaction Networks (Graph Theory):} To model the conflict as a dynamic social network. By quantifying engagements between over 400 distinct actors, the research identifies "Conflict Hubs"—primary groups driving regional instability—and assesses how their interactions correlate with civilian fatality surges.
 
-    \item \textbf{Regional Risk Matrix:} To provide a comparative spatial assessment of conflict severity. By computing a Severity Index (Fatalities per Event) and plotting administrative regions on a Frequency vs. Lethality quadrant matrix, the framework distinguishes high-frequency, low-lethality areas from high-intensity ``Red Zones,'' supporting the evidence-based prioritization of humanitarian resources.
+    \item \textbf{Regional Risk Matrix (Vulnerability Assessment):} To provide a comparative spatial assessment of conflict severity. By computing a Severity Index (Fatalities per Event) and plotting administrative regions on a Frequency vs. Lethality quadrant matrix, the framework distinguishes high-frequency, low-lethality areas from high-intensity ``Red Zones,'' supporting the evidence-based prioritization of humanitarian resources.
 
     \item \textbf{Semantic Narrative Intelligence (NLP):} To decode the "Nature of Violence" through Natural Language Processing. By extracting narrative keywords from event notes, the study distinguishes between different modes of warfare (e.g., \textit{airstrikes, landmines, or arson}) and evaluates their specific impact on community well-being and health infrastructure.
-
-    \item \textbf{Stability and Severity Assessment:} To calculate a \textbf{Severity Index} (Fatalities per Event) for every administrative region. This objective aims to distinguish between high-frequency, low-lethality areas and high-severity "Red Zones," providing a prioritized roadmap for targeted humanitarian aid and policy intervention.
 \end{enumerate}
 
 % --- Section III: System Architecture ---
@@ -100,7 +98,7 @@ To align tactical conflict data with SDG 3.d, the framework incorporates a Natur
     \item \textbf{Systemic Well-being Analysis:} Beyond direct infrastructure damage, the system further identifies events involving sexual violence, abduction, or looting. These incidents are categorized as systemic threats to community health and well-being, consistent with the broader health security dimensions articulated in SDG 3.3 and SDG 3.8.
 \end{itemize}
 
-\subsection{Regional Risk Matrix and Severity Assessment}
+\subsection{Regional Risk Matrix Methodology}
 
 The framework produces a comparative regional severity assessment through two complementary analytical outputs:
 
@@ -111,7 +109,7 @@ The framework produces a comparative regional severity assessment through two co
           \]
           A score exceeding 1.0 indicates that, on average, every engagement in that region results in at least one confirmed death, identifying it as a high-intensity combat zone requiring prioritized humanitarian attention.
 
-    \item \textbf{Frequency vs. Lethality Matrix:} Administrative regions are plotted on a two-dimensional quadrant matrix with event frequency on the horizontal axis and the Severity Index on the vertical axis. Bubble size represents the total fatality volume. This visualization enables analysts to differentiate ``High-Frequency, Low-Lethality'' zones from ``Low-Frequency, High-Lethality'' Red Zones, facilitating evidence-based allocation of humanitarian medical resources.
+    \item \textbf{Quadrant Analysis:} Administrative regions are plotted on a two-dimensional quadrant matrix with event frequency on the horizontal axis and the Severity Index on the vertical axis. Bubble size represents the total fatality volume. This visualization enables analysts to differentiate ``High-Frequency, Low-Lethality'' zones from ``Low-Frequency, High-Lethality'' Red Zones, facilitating evidence-based allocation of humanitarian medical resources.
 \end{enumerate}
 
 \subsection{Presentation and High-Resolution Export Layer}
@@ -137,14 +135,14 @@ As illustrated in the Humanitarian Conflict Overlay (Fig. \ref{fig:health_confli
     \label{fig:health_conflict_overlay}
 \end{figure}
 
-\subsection{Regional Severity Assessment}
-The \textbf{Severity Index} (Fatalities per Event) allows for a high-resolution distinction between high-frequency areas and high-lethality zones. While Sagaing has the highest event count, \textbf{Kayah State} and \textbf{Rakhine} consistently exhibit a Severity Index exceeding 1.5. This indicates that nearly every engagement in these regions results in at least one confirmed death, identifying them as "High-Intensity Combat Zones." Fig. \ref{fig:severity_assessment} visualizes the severity distribution across affected regions, highlighting that areas with a Severity Index greater than 1.0 have a significantly higher probability of medical infrastructure damage.
+\subsection{Conflict Intensity: The Regional Risk Matrix}
+The \textbf{Severity Index} (Fatalities per Event) allows for a high-resolution distinction between high-frequency areas and high-lethality zones. While Sagaing has the highest event count, \textbf{Kayah State} and \textbf{Rakhine} consistently exhibit a Severity Index exceeding 1.5. This indicates that nearly every engagement in these regions results in at least one confirmed death, identifying them as "High-Intensity Combat Zones." Fig. \ref{fig:risk_matrix} visualizes the severity distribution across affected regions, highlighting that areas with a Severity Index greater than 1.0 have a significantly higher probability of medical infrastructure damage.
 
 \begin{figure*}
     \centering
     \includegraphics[width=\textwidth]{assets/risk_matrix.png}
-    \caption{Regional Severity Assessment indicating high-lethality "Red Zones" versus high-frequency conflict areas across Myanmar.}
-    \label{fig:severity_assessment}
+    \caption{Regional Risk Matrix (Event Frequency vs. Lethality) indicating high-lethality "Red Zones" versus high-frequency conflict areas across Myanmar.}
+    \label{fig:risk_matrix}
 \end{figure*}
 
 \subsection{Seasonality: The "Dry Season Offensive" Cycle}
@@ -214,12 +212,12 @@ Longitudinal analysis of verified fatalities reveals a sustained upward trend ac
     \label{fig:temporal_frequency}
 \end{figure*}
 
-\subsection{Regional Risk Matrix}
+\subsection{Health Vulnerability Prioritization}
 To prioritize humanitarian response, the framework calculates a \textbf{Vulnerability Score} for each administrative region using the weighted formula:
 \[
     \text{Score} = (0.7 \times \text{Health Events}) + (0.3 \times \text{Fatalities})
 \]
-This composite metric identifies the \textbf{Sagaing Region} as the most critical "Red Zone" for health assistance, while also highlighting elevated vulnerability in \textbf{Kayah} and \textbf{Rakhine}. As previously illustrated in the Regional Severity Assessment (Fig. \ref{fig:severity_assessment}), the quadrant-based view (Event Frequency vs. Lethality) distinguishes high-frequency conflict zones from high-lethality areas, supporting the evidence-based prioritization of humanitarian medical resources.
+This composite metric identifies the \textbf{Sagaing Region} as the most critical "Red Zone" for health assistance, while also highlighting elevated vulnerability in \textbf{Kayah} and \textbf{Rakhine}. As previously illustrated in the Regional Risk Matrix (Fig. \ref{fig:risk_matrix}), the quadrant-based view distinguishes high-frequency conflict zones from high-lethality areas, supporting the evidence-based prioritization of humanitarian medical resources.
 
 % --- Section VI: Discussion ---
 \section{Discussion}
