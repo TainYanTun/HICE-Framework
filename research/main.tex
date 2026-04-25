@@ -34,7 +34,7 @@
 
 % --- Abstract ---
 \begin{abstract}
-    Since the unconstitutional seizure of power in February 2021, Myanmar has transitioned to a state of protracted armed conflict characterized by the fragmentation of state authority. This study introduces the \textit{Myanmar Conflict Observatory}, a structured detection framework designed to interrogate the dynamics of political violence and its intersection with public health security. Utilizing data from the Armed Conflict Location \& Event Data Project (ACLED) covering over 80,000 events, the system employs a multi-layered rule-based NLP pipeline optimized for the conflict-health nexus. The framework identified \textbf{1,469 high-confidence Health-Impacting Conflict Events (HICE)}, revealing that physical infrastructure damage (n=1,013) constitutes the primary structural threat to healthcare access. Crucially, the model uncovered an 88.6\% ``hidden toll'' missed by traditional structured actor tags, providing a rigorous evidence base for humanitarian planning and SDG 3.d monitoring. The full codebase is available at: \href{https://github.com/TainYanTun/Myanmar-conflict-observatory}{Myanmar-conflict-observatory-Repo}.
+    Since the unconstitutional seizure of power in February 2021, Myanmar has transitioned to a state of protracted armed conflict characterized by the fragmentation of state authority. This study introduces the \textit{Myanmar Conflict Observatory}, a structured detection framework designed to interrogate the dynamics of political violence and its intersection with public health security. Utilizing data from the Armed Conflict Location \& Event Data Project (ACLED) covering over 80,000 events, the system employs a multi-layered rule-based NLP pipeline optimized for the conflict-health nexus. The framework identified \textbf{1,469 high-confidence Health-Impacting Conflict Events (HICE)}, revealing that physical infrastructure damage (n=1,006) constitutes the primary structural threat to healthcare access. Crucially, the model uncovered a \textbf{71.6\% ``hidden toll''} of HICE events absent from traditional structured actor tags (417 ACLED-tagged vs.\ 1,469 NLP-detected), providing a rigorous evidence base for humanitarian planning and SDG 3.d monitoring. The full codebase is available at: \href{https://github.com/TainYanTun/Myanmar-conflict-observatory}{Myanmar-conflict-observatory-Repo}.
 \end{abstract}
 
 % --- Keywords ---
@@ -157,7 +157,7 @@ To ensure the scientific rigor of the Myanmar Conflict Observatory, the framewor
 \subsection{Multi-Layered Detection Validation (HICE)}
 To ensure the scientific rigor of the detection framework, a two-pronged validation strategy was implemented: an automated cross-validation against structured dataset metadata and a strategic manual audit. 
 
-First, the automated detection results were cross-referenced with ACLED’s internal associated actor tags (e.g., ``Health Workers,'' ``Patients''). While the framework identified significantly more health-nexus events by decoding qualitative narratives, the automated validation confirmed that the model captures all formally tagged events, providing an 88.6\% increase in visibility over standard structured analysis.
+First, the automated detection results were cross-referenced with ACLED's internal associated actor tags (e.g., ``Health Workers,'' ``Patients''). While the framework identified significantly more health-nexus events by decoding qualitative narratives, the automated validation confirmed that the model captures all formally tagged events, providing a \textbf{252.3\% increase} in visibility over standard structured analysis (417 ACLED-tagged events vs.\ 1,469 NLP-detected HICE), confirming that 71.6\% of verified HICE carried no corresponding health actor tag.
 
 Second, a strategic manual audit was conducted on a randomized sample of $n=30$ high-confidence HICE incidents. Each narrative was audited against ground-truth reports to confirm whether it represented a legitimate threat to healthcare infrastructure or personnel targeting. The audit revealed a \textbf{Precision of 89.5\%}. This high degree of accuracy is attributed to the bidirectional proximity logic and mandatory action-coupling (e.g., linking medical keywords to specific kinetic verbs like ``attacked'' or ``shelled''), which effectively eliminates incidental mentions and humanitarian aid noise. This confirms that the detection framework provides a reliable, high-fidelity evidence base for humanitarian triage in complex conflict environments.
 
@@ -166,7 +166,7 @@ The framework utilizes a weighted composite formula ($0.7$ Health / $0.3$ Fatali
 
 The methodology involved systematically perturbing the weights within a $\pm 10\%$ range ($W_{Health} \in [0.63, 0.77]$) and calculating the resulting change in regional prioritization. Robustness was measured using the \textbf{Spearman Rank Correlation Coefficient ($\rho$)}, which assesses the stability of the ranking order between the baseline and the perturbed models.
 
-As detailed in Table \ref{tab:sensitivity}, the analysis yielded a minimum \textbf{Spearman’s $\rho$ of 0.9979}. The near-perfect correlation across the entire perturbation spectrum indicates that regional rankings are extremely stable. This proves that the identification of ``Red Zones'' is driven by underlying conflict patterns rather than minor shifts in mathematical parameters, providing humanitarian stakeholders with a stable, objective prioritization tool.
+As detailed in Table \ref{tab:sensitivity}, the analysis yielded a minimum \textbf{Spearman's $\rho$ of 0.9853} at the most extreme perturbation ($-10\%$). The near-perfect correlation across the entire perturbation spectrum indicates that regional rankings are extremely stable. Critically, the top six priority regions---Sagaing, Mandalay, Magway, Rakhine, Shan-North, and Yangon---retain identical rank positions across all tested configurations, with minor rank shifts of at most $\pm 2$ positions confined to mid-tier regions (ranks 7--15). This proves that the identification of ``Red Zones'' is driven by underlying conflict patterns rather than minor shifts in mathematical parameters, providing humanitarian stakeholders with a stable, objective prioritization tool.
 
 \begin{table}[h]
 \centering
@@ -176,17 +176,17 @@ As detailed in Table \ref{tab:sensitivity}, the analysis yielded a minimum \text
 \toprule
 Variation (\%) & $W_{Health}$ & $W_{Fatalities}$ & Spearman's $\rho$ \\
 \midrule
--10.0 & 0.630 & 0.370 & 1.0000 \\
--8.0 & 0.644 & 0.356 & 1.0000 \\
--6.0 & 0.658 & 0.342 & 1.0000 \\
--4.0 & 0.672 & 0.328 & 1.0000 \\
+-10.0 & 0.630 & 0.370 & 0.9853 \\
+-8.0 & 0.644 & 0.356 & 0.9951 \\
+-6.0 & 0.658 & 0.342 & 0.9975 \\
+-4.0 & 0.672 & 0.328 & 0.9975 \\
 -2.0 & 0.686 & 0.314 & 1.0000 \\
 0.0 & 0.700 & 0.300 & 1.0000 \\
 2.0 & 0.714 & 0.286 & 1.0000 \\
 4.0 & 0.728 & 0.272 & 1.0000 \\
 6.0 & 0.742 & 0.258 & 1.0000 \\
-8.0 & 0.756 & 0.244 & 0.9979 \\
-10.0 & 0.770 & 0.230 & 0.9979 \\
+8.0 & 0.756 & 0.244 & 0.9975 \\
+10.0 & 0.770 & 0.230 & 0.9975 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -200,7 +200,7 @@ The conflict trajectory transitioned from initial urban protests (2021) to rural
 \subsection{Geospatial Shift: Primary Spatial Concentration}
 The conflict exhibits a significant geographical shift in the concentration of violence. In February 2021, the Sagaing Region accounted for 10.5\% of national conflict events, primarily localized in urban centers and ethnic borderlands. By April 2025, Sagaing's share of national conflict events surged to 26.9\%, representing over a quarter of nationwide kinetic activity. This shift indicates a structural transformation, moving the primary operational focus into the country's agricultural heartland.
 
-As shown in the Humanitarian Conflict Overlay (Fig. \ref{fig:health_conflict_overlay}), Sagaing accounts for the highest volume of both fatalities ($\approx$25,468) and health-impacting events (927 incidents). The visualization identifies a dense concentration of points in the central dry zone, implying that kinetic engagements are not merely peripheral but have become central to the regional security landscape. A nearly 1:1 spatial correlation exists between high-intensity kinetic zones and incidents disrupting healthcare. Heavy artillery and airstrikes, which drive civilian displacement, are also primary factors in the collapse of medical access. Sagaing's interior geography creates a ``high-mortality tactical zone'' where medical evacuation is restricted and aid delivery is frequently obstructed. This concentration was exacerbated by the magnitude 7.7 earthquake on March 28, 2025, which converged with existing kinetic damage to create a state of ``double-severance'' for health infrastructure.
+As shown in the Humanitarian Conflict Overlay (Fig. \ref{fig:health_conflict_overlay}), Sagaing accounts for the highest volume of both fatalities ($\approx$26,552) and verified health-impacting events (n=296 HICE). The visualization identifies a dense concentration of points in the central dry zone, implying that kinetic engagements are not merely peripheral but have become central to the regional security landscape. A nearly 1:1 spatial correlation exists between high-intensity kinetic zones and incidents disrupting healthcare. Heavy artillery and airstrikes, which drive civilian displacement, are also primary factors in the collapse of medical access. Sagaing's interior geography creates a ``high-mortality tactical zone'' where medical evacuation is restricted and aid delivery is frequently obstructed. This concentration was exacerbated by the magnitude 7.7 earthquake on March 28, 2025, which converged with existing kinetic damage to create a state of ``double-severance'' for health infrastructure.
 \begin{figure}
     \centering
     \includegraphics[width=\columnwidth]{assets/health_conflict_overlay.png}
@@ -336,7 +336,7 @@ The \textit{Myanmar Conflict Observatory} establishes a rigorous analytical fram
 
 Crucially, the identification of \textbf{1,469 verified Health-Impacting Conflict Events (HICE)} reveals that medical infrastructure and personnel are systematically vulnerable within the landscape of asymmetric warfare, with infrastructure damage accounting for over 68\% of detected impacts. The ``Sagaing-ization'' of the conflict, compounded by the devastating 7.7 magnitude earthquake in March 2025, has created a state of perpetual polycrisis. This intersection of seismic catastrophe and kinetic violence has exposed the systematic weaponization of aid and the creation of medical ``Blind Zones'' where formal healthcare has been replaced by informal, underground networks of survival.
 
-Ultimately, this study underscores that in fragile environments, humanitarian risk monitoring must transcend simple fatality counts. By utilizing the structured detection approach, the observatory provides a conservative yet rigorous evidence base for strategic intervention, capturing 88.6\% more health-relevant events than standard dataset tagging alone. This observatory serves not only as a technical tool but as a vital instrument for accountability, ensuring that the structural erosion of healthcare and the immense human cost of the conflict are documented with the precision required to support future peace-building and the restoration of national health security.
+Ultimately, this study underscores that in fragile environments, humanitarian risk monitoring must transcend simple fatality counts. By utilizing the structured detection approach, the observatory provides a conservative yet rigorous evidence base for strategic intervention, capturing \textbf{252.3\% more} health-relevant events than standard dataset tagging alone (417 ACLED-tagged vs.\ 1,469 NLP-detected). This observatory serves not only as a technical tool but as a vital instrument for accountability, ensuring that the structural erosion of healthcare and the immense human cost of the conflict are documented with the precision required to support future peace-building and the restoration of national health security.
 % --- Section XI: Acknowledgment ---
 \section{Acknowledgment}
 
