@@ -24,7 +24,8 @@
     \IEEEauthorblockN{Tain Yan Tun}
     \IEEEauthorblockA{
         \textit{Faculty of Information Technology} \\
-        \textit{Analytical Research} \\
+        \textit{Asia Pacific International University} \\
+        Computational Data Science \\
         Saraburi, Thailand \\
     }
 }
@@ -36,12 +37,12 @@
 
 % --- Abstract ---
 \begin{abstract}
-    Since the unconstitutional seizure of power in February 2021, Myanmar has transitioned to a state of protracted armed conflict characterized by the fragmentation of state authority. This study introduces the \textit{Myanmar Conflict Observatory}, a structured detection framework designed to interrogate the dynamics of political violence and its intersection with public health security. Utilizing data from the Armed Conflict Location \& Event Data Project (ACLED) covering over 80,000 events, the system employs a multi-layered rule-based NLP pipeline optimized for the conflict-health nexus. The framework identified \textbf{533 high-confidence Health-Impacting Conflict Events (HICE)}, revealing that physical infrastructure damage (n=237) constitutes a primary structural threat to healthcare access. Crucially, the model uncovered a \textbf{21.8\% ``hidden toll''} of HICE events absent from traditional structured actor tags (417 ACLED-tagged vs.\ 533 NLP-verified), providing a rigorous evidence base for humanitarian planning and SDG 3.d monitoring.
+    Since the unconstitutional seizure of power in February 2021, Myanmar has transitioned to a state of protracted armed conflict characterized by the fragmentation of state authority. This study introduces the \textit{Myanmar Conflict Observatory}, a structured detection framework designed to interrogate the dynamics of political violence and its intersection with public health security. Utilizing large-scale event data from the Armed Conflict Location \& Event Data Project (ACLED), the system employs a multi-layered rule-based NLP pipeline optimized for the conflict-health nexus. The framework systematically identifies high-confidence Health-Impacting Conflict Events (HICE), revealing that physical infrastructure damage constitutes a primary structural threat to healthcare access. Crucially, the model uncovers a significant ``hidden toll'' of events absent from traditional structured actor tags, providing a rigorous evidence base for humanitarian planning and SDG 3.d monitoring.
 \end{abstract}
 
 % --- Keywords ---
 \begin{IEEEkeywords}
-    Myanmar Conflict, ACLED, SDG 3.d, HICE Framework, Event Detection, Geospatial Analysis.
+    Political Violence, Conflict Analytics, Health Infrastructure, Event Data Analysis, Natural Language Processing, Geospatial Analysis, Humanitarian Risk Assessment
 \end{IEEEkeywords}
 
 % --- Section I: Introduction ---
@@ -75,19 +76,19 @@ A persistent gap remains in linking conflict event data to specific Sustainable 
 
 The framework utilizes a multi-dimensional analytical framework to pursue four principal lines of inquiry:
 \begin{enumerate}
-    \item \textbf{Geospatial Risk Modeling (SDG 3.d):} To investigate the spatial diffusion of violence relative to healthcare infrastructure. This objective focuses on mapping \textit{Health-Impacting Conflict Events (HICE)} to identify ``Blind Zones'' where medical access has been systematically severed by kinetic engagements.
+    \item \textbf{Geospatial Risk Modeling (SDG 3.d):} To investigate the spatial diffusion of violence relative to healthcare infrastructure. This objective focuses on mapping \textit{Health-Impacting Conflict Events (HICE)} to identify ``Blind Zones'' where medical access has been systematically severed by kinetic engagements \cite{who_myanmar_2025,ocha_myanmar_2025}.
 
-    \item \textbf{Actor Interaction Networks (Graph Theory):} To model the conflict as a dynamic social network. By quantifying engagements between over 400 distinct actors, the research identifies ``Conflict Hubs''—primary groups driving regional instability—and assesses how their interactions correlate with civilian fatality surges.
+    \item \textbf{Actor Interaction Networks (Graph Theory):} To model the conflict as a dynamic social network. By quantifying engagements between over 400 distinct actors, the research identifies ``Conflict Hubs'', primary groups driving regional instability and assesses how their interactions correlate with civilian fatality surges \cite{tkacova2023conflict}.
 
-    \item \textbf{Regional Risk Matrix (Vulnerability Assessment):} To provide a comparative spatial assessment of conflict severity. By computing a Severity Index (Fatalities per Event) and plotting administrative regions on a Frequency vs. Lethality quadrant matrix, the framework distinguishes high-frequency, low-lethality areas from high-intensity ``Red Zones,'' supporting the evidence-based prioritization of humanitarian resources.
+    \item \textbf{Regional Risk Matrix (Vulnerability Assessment):} To provide a comparative spatial assessment of conflict severity. By computing a Severity Index (Fatalities per Event) and plotting administrative regions on a Frequency vs. Lethality quadrant matrix, the framework distinguishes high-frequency, low-lethality areas from high-intensity ``Red Zones,'' supporting the evidence-based prioritization of humanitarian resources \cite{shcc2024myanmar}.
 
-    \item \textbf{Semantic Narrative Intelligence (NLP):} To decode the ``Nature of Violence'' through Natural Language Processing. By extracting narrative keywords from event notes, the study distinguishes between different modes of warfare (e.g., \textit{airstrikes, landmines, or arson}) and evaluates their specific impact on community well-being and health infrastructure.
+    \item \textbf{Semantic Narrative Intelligence (NLP):} To decode the ``Nature of Violence'' through Natural Language Processing. By extracting narrative keywords from event notes, the study distinguishes between different modes of warfare (e.g., \textit{airstrikes, landmines, or arson}) and evaluates their specific impact on community well-being and health infrastructure \cite{acled_nlp_notes}.
 \end{enumerate}
 
 \subsection{Design Framework}
 
 The Myanmar Conflict Observatory is built upon a modular, four-tier architecture designed for high-frequency data ingestion and real-time humanitarian intelligence (Fig. \ref{fig:system_arch}). This architecture ensures that qualitative event narratives are systematically converted into quantitative risk metrics, facilitating the transition from descriptive logging to actionable analytical outputs.
- The dataset utilized in the Myanmar Conflict Observatory derived from the ACLED and covering the period from February 2021 to 2025 contains approximately 100,000–200,000 records, which corresponds to a memory footprint of less than 200 MB. At this scale, distributed computing introduces computational overhead without providing meaningful performance gains \cite{mckinney2010data}.
+ The dataset utilized in the Myanmar Conflict Observatory derived from the ACLED and covering the period from February 2021 to 2025 contains over 80,000 records, which corresponds to a memory footprint of less than 200 MB. At this scale, distributed computing introduces computational overhead without providing meaningful performance gains \cite{mckinney2010data}.
 
 Accordingly, the analytical pipeline is implemented within the Python scientific ecosystem, leveraging Pandas for efficient in-memory data manipulation and NumPy for high-performance numerical computation \cite{mckinney2010data,vanderwalt2011numpy}. This design choice enables low-latency execution, which is particularly important for the interactive analytical environment implemented through Streamlit. In addition, maintaining a Pandas-native workflow facilitates seamless integration with the visualization and analytical libraries employed in this study, including Plotly, NetworkX, and Scikit-learn. Should data volumes increase in future iterations, scalability can be achieved through query optimization and aggregation within the underlying PostgreSQL database layer.
 
@@ -204,7 +205,7 @@ The framework utilizes a weighted composite formula ($0.7$ Health / $0.3$ Fatali
 
 The methodology involved systematically perturbing the weights within a $\pm 10\%$ range ($W_{Health} \in [0.63, 0.77]$) and calculating the resulting change in regional prioritization. Robustness was measured using the \textbf{Spearman Rank Correlation Coefficient ($\rho$)}, which assesses the stability of the ranking order between the baseline and the perturbed models.
 
-As detailed in Table \ref{tab:sensitivity}, the analysis yielded a minimum \textbf{Spearman's $\rho$ of 0.9853} at the most extreme perturbation ($-10\%$). The near-perfect correlation across the entire perturbation spectrum indicates that regional rankings are extremely stable. Critically, the top six priority regions---Sagaing, Mandalay, Magway, Rakhine, Shan-North, and Yangon---retain identical rank positions across all tested configurations, with minor rank shifts of at most $\pm 2$ positions confined to mid-tier regions (ranks 7--15). This proves that the identification of ``Red Zones'' is driven by underlying conflict patterns rather than minor shifts in mathematical parameters, providing humanitarian stakeholders with a stable, objective prioritization tool (Figure \ref{fig:rank_stability}).
+As detailed in Table \ref{tab:sensitivity}, the analysis yielded a minimum \textbf{Spearman's $\rho$ of 0.9853} at the most extreme perturbation ($-10\%$). The near-perfect correlation across the entire perturbation spectrum indicates that regional rankings are extremely stable. Critically, the top six priority regions, Sagaing, Mandalay, Magway, Rakhine, Shan-North, and Yangon, retain identical rank positions across all tested configurations, with minor rank shifts of at most $\pm 2$ positions confined to mid-tier regions (ranks 7--15). This suggests that the identification of ``Red Zones'' is driven by underlying conflict patterns rather than minor shifts in mathematical parameters which provides a stable, objective prioritization tool for humanitarian stakeholders (Figure \ref{fig:rank_stability}).
 
 \begin{figure}
     \centering
@@ -239,13 +240,13 @@ Variation (\%) & $W_{Health}$ & $W_{Fatalities}$ & Spearman's $\rho$ \\
 % --- Section V: Case Study - Spatiotemporal Analysis ---
 \section{Case Study: Spatiotemporal Analysis}
 
-The spatiotemporal analysis of the Myanmar conflict (Feb 2021 – Feb 2025) identifies distinct patterns in the contemporary security landscape. Analytical outputs are derived from a dataset snapshot as of April 2, 2025. This snapshot adheres to ACLED’s 12-month data latency policy for high-complexity environments, providing a verified baseline for historical analysis. While real-time reports circulate via local networks, this study restricts its scope to verified events to maintain methodological integrity.
+The spatiotemporal analysis of the Myanmar conflict (Feb 1, `2021 – April 2, 2025) identifies distinct patterns in the contemporary security landscape. Analytical outputs are derived from a dataset snapshot as of April 2, 2025. This snapshot adheres to ACLED’s 12-month data latency policy for high-complexity environments, providing a verified baseline for historical analysis. While real-time reports circulate via local networks, this study restricts its scope to verified events to maintain methodological integrity.
 
 The conflict trajectory transitioned from initial urban protests (2021) to rural insurgency (2022) and subsequent high-intensity asymmetrical warfare. Due to manuscript constraints, a selection of statistically significant findings is presented; the complete analytical suite and interactive visualizations are available on the \textit{Myanmar Conflict Observatory} digital dashboard.
 \subsection{Geospatial Shift: Primary Spatial Concentration}
-The conflict exhibits a significant geographical shift in the concentration of violence. In February 2021, the Sagaing Region accounted for 10.5\% of national conflict events, primarily localized in urban centers and ethnic borderlands. By April 2025, Sagaing's share of national conflict events surged to 26.9\%, representing over a quarter of nationwide kinetic activity. This shift indicates a structural transformation, moving the primary operational focus into the country's agricultural heartland.
+The conflict exhibits a significant geographical shift in the concentration of violence \cite{shcc2023myanmar,idler2023conflict}. In February 2021, the Sagaing Region accounted for 10.5\% of national conflict events, primarily localized in urban centers and ethnic borderlands. By April 2025, Sagaing's share of national conflict events surged to 26.9\%, representing over a quarter of nationwide kinetic activity \cite{acled2023myanmar}. This shift indicates a structural transformation, moving the primary operational focus into the country's agricultural heartland.
 
-As shown in the Humanitarian Conflict Overlay (Fig. \ref{fig:health_conflict_overlay}), Sagaing accounts for the highest volume of both fatalities ($\approx$26,552) and verified health-impacting events (n=117 HICE). The visualization identifies a dense concentration of points in the central dry zone, implying that kinetic engagements are not merely peripheral but have become central to the regional security landscape. A nearly 1:1 spatial correlation exists between high-intensity kinetic zones and incidents disrupting healthcare. Heavy artillery and airstrikes, which drive civilian displacement, are also primary factors in the collapse of medical access. Sagaing's interior geography creates a ``high-mortality tactical zone'' where medical evacuation is restricted and aid delivery is frequently obstructed. This concentration was exacerbated by the magnitude 7.7 earthquake on March 28, 2025, which converged with existing kinetic damage to create a state of ``double-severance'' for health infrastructure.
+As shown in the Humanitarian Conflict Overlay (Fig. \ref{fig:health_conflict_overlay}), Sagaing accounts for the highest volume of both fatalities ($\approx$26,552) and verified health-impacting events (n=117 HICE). The visualization identifies a dense concentration of points in the central dry zone, implying that kinetic engagements are not merely peripheral but have become central to the regional security landscape. A nearly 1:1 spatial correlation exists between high-intensity kinetic zones and incidents disrupting healthcare \cite{insecurityinsight2026april}. Heavy artillery and airstrikes, which drive civilian displacement, are also primary factors in the collapse of medical access \cite{who_hea_2025}. Sagaing's interior geography creates a ``high-mortality tactical zone'' where medical evacuation is restricted and aid delivery is frequently obstructed. This concentration was exacerbated by the magnitude 7.7 earthquake on March 28, 2025, which converged with existing kinetic damage to create a state of ``double-severance'' for health infrastructure \cite{ocha_myanmar_2025}.
 \begin{figure}
     \centering
     \includegraphics[width=\columnwidth]{assets/health_conflict_overlay.png}
@@ -269,9 +270,9 @@ Fig. \ref{fig:risk_matrix} visualizes the severity distribution through a quadra
 Conflict intensity follows a seasonal cycle linked to environmental conditions. A consistent surge occurs during the dry season (November–March), with events increasing from approximately 7,009 in November to nearly 8,000 in February—a 14\% intra-seasonal rise. This period correlates with improved road passability, facilitating logistical movement. Conversely, a 25\% operational contraction occurs during the monsoon season (April–July), reaching a minimum of 5,870 events in July. This cyclicality dictates strategic offensive windows and informs the timing for pre-positioning humanitarian resources.
 
 \subsection{Tactical Evolution: Drones and Chokepoint Warfare}
-Asymmetric forces have adopted advanced capabilities to offset conventional disadvantages. Drone-related events increased 30-fold, from $<5$ per month in mid-2021 to 142 in January 2025. However, a ``Drone Paradox'' is observed: average fatalities in drone-led events (1.68) are lower than in traditional engagements (1.88), suggesting their primary use for standoff harassment and attrition.
+Asymmetric forces have adopted advanced capabilities to offset conventional disadvantages. Drone-related events increased 30-fold, from $<5$ per month in mid-2021 to 142 in January 2025. However, a ``Drone Paradox'' is observed in which average fatalities in drone-led events (1.68) are lower than in traditional engagements (1.88), suggesting their primary use for standoff harassment and attrition.
 
-The observatory's dataset confirms a progressive tactical transformation from urban protests to high-intensity battles and remote violence, implying that tactical access denial has replaced civil disobedience as the primary mode of resistance. Simultaneously, a shift toward ``access denial'' is evident. Mentions of infrastructure chokepoints---bridges, highways, and telecommunication towers---increased by 45\% since 2023. While tactically effective for isolating urban centers, this strategy severs civilian logistics and disrupts medical supply chains, precipitating secondary health crises.
+The observatory's dataset confirms a progressive tactical transformation from urban protests to high-intensity battles and remote violence, implying that tactical access denial has replaced civil disobedience as the primary mode of resistance. Simultaneously, a shift toward ``access denial'' is evident. Mentions of infrastructure chokepoints (bridges, highways, and telecommunication towers) increased by 45\% since 2023. While tactically effective for isolating urban centers, this strategy severs civilian logistics and disrupts medical supply chains, precipitating secondary health crises.
 
 \subsection{Actor Dynamics: Hybridization and Fragmentation}
 Macro-level analysis shows Resistance Forces involved in 45\% of engagements. Granular audits identify two key trends:
@@ -289,7 +290,7 @@ Macro-level analysis shows Resistance Forces involved in 45\% of engagements. Gr
 \end{figure}
 
 The actor network in Fig. \ref{fig:actor_network} identifies central nodes of instability and the density of alliances between EAOs and Resistance forces, implying a professionalization of the insurgency that sustains long-term kinetic operations. Additionally, state-aligned proxy mentions increased by 38\% in the Northwest, suggesting an outsourcing of kinetic operations to local militias.
-...
+
 \begin{figure*}
     \centering
     \includegraphics[width=\textwidth]{assets/temporal_frequency.png}
@@ -302,30 +303,18 @@ The historical fatality trajectory in Fig. \ref{fig:temporal_frequency} document
 \subsection{Anatomy of HICE: Nature of Health Impacts}
 The detection of 533 high-confidence HICE incidents allows for a granular decomposition of the ``Nature of Violence'' directed at the healthcare sector. By applying the hierarchical classification rubric, the framework distinguishes between structural damage and personnel-specific threats.
 
-As detailed in Table \ref{tab:hice_categories}, \textbf{Infrastructure Damage (n=237, 44.5\%)} constitutes the single largest category of impact. This includes direct kinetic hits from airstrikes and artillery, as well as the deliberate burning or looting of rural clinics. \textbf{Access Disruption (n=189, 35.5\%)} represents a significant secondary threat, where proximity violence and tactical blockades force the closure of facilities even in the absence of direct structural damage.
+As detailed in Fig. \ref{fig:hice_classification}, the Infrastructure Damage (n=237, 44.5\%) constitutes the single largest category of impact. This includes direct kinetic hits from airstrikes and artillery, as well as the deliberate burning or looting of rural clinics. Access Disruption (n=189, 35.5\%) represents a significant secondary threat, where proximity violence and tactical blockades force the closure of facilities even in the absence of direct structural damage.
 
-\begin{table}[h]
-\centering
-\caption{Taxonomy and Distribution of Health-Impacting Conflict Events (HICE)}
-\label{tab:hice_categories}
-\begin{tabular}{lccl}
-\hline
-\textbf{Category} & \textbf{n} & \textbf{\%} & \textbf{Primary Indicators} \\
-\hline
-Infrastructure Damage    & 237 & 44.5 & Shelling, Arson, Looting \\
-Access Disruption        & 189 & 35.5 & Proximity battles, Blockades \\
-Personnel Targeting      & 56  & 10.5 & Arrests, Killings, Abductions \\
-Humanitarian Disruption  & 39  & 7.3  & Aid interference, Supply seizure \\
-Systemic Attack          & 12  & 2.3  & Combined facility/staff hits \\
-\hline
-\textbf{Total Verified}  & \textbf{533} & \textbf{100.0} & \\
-\hline
-\end{tabular}
-\end{table}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\columnwidth]{assets/hice_classification.png}
+    \caption{HICE Impact Classification: Circular distribution of verified health-impacting conflict events by nature of impact.}
+    \label{fig:hice_classification}
+\end{figure}
 
-The framework further delineates the \textit{Mode of Disruption}, revealing that HICE are not merely incidental byproducts of active battles but are often driven by deliberate administrative and tactical maneuvers. Notably, \textbf{Strategic Developments (n=178)}—including the occupation of facilities and targeted arrests of medical personnel—emerge as the primary driver of HICE, outperforming active \textbf{Battles (n=61)}. This suggests a systematic weaponization of health infrastructure as a tool for territorial control. Furthermore, \textbf{Explosions and Remote Violence (n=160)} account for over 30\% of HICE, highlighting the high structural cost of stand-off tactics such as shelling and airstrikes.
+The framework further delineates the \textit{Mode of Disruption}, revealing that HICE are not merely incidental byproducts of active battles but are often driven by deliberate administrative and tactical maneuvers. Notably, Strategic Developments (n=178)—including the occupation of facilities and targeted arrests of medical personnel—emerge as the primary driver of HICE, outperforming active Battles (n=61). This suggests a systematic weaponization of health infrastructure as a tool for territorial control. Furthermore, Explosions and Remote Violence (n=160) account for over 30\% of HICE, highlighting the high structural cost of stand-off tactics such as shelling and airstrikes.
 
-Analysis of actor involvement confirms that the \textbf{Military Forces of Myanmar (Tatmadaw)} are the primary protagonists in health-related incidents, with involvement in \textbf{334 verified HICE (62.7\%)}. While the majority of these events are intended to disrupt opposition support networks, the human cost is substantial; the study identified \textbf{7 high-lethality HICE outliers} where a single engagement resulted in over 10 confirmed fatalities. Temporally, while the initial post-coup period (2021) saw the highest frequency of HICE (n=162), the rate has remained remarkably persistent, averaging over 100 incidents annually from 2022 through 2024. This indicates that the disruption of healthcare has evolved from a reactive shock into a structural feature of the protracted conflict. Additionally, the targeting of mobile medical assets—evidenced by \textbf{17 documented ambulance-related attacks}—underscores the erosion of the ``protected status'' traditionally afforded to medical transport under international humanitarian law.
+Analysis of actor involvement confirms that the Military Forces of Myanmar (Tatmadaw) are the primary protagonists in health-related incidents, with involvement in 334 verified HICE (62.7\%). While the majority of these events are intended to disrupt opposition support networks, the human cost is substantial; the study identified 7 high-lethality HICE outliers where a single engagement resulted in over 10 confirmed fatalities. Temporally, while the initial post-coup period (2021) saw the highest frequency of HICE (n=162), the rate has remained remarkably persistent, averaging over 100 incidents annually from 2022 through 2024. This indicates that the disruption of healthcare has evolved from a reactive shock into a structural feature of the protracted conflict. Additionally, the targeting of mobile medical assets, evidenced by 17 documented ambulance-related attacks, underscores the erosion of the ``protected status'' traditionally afforded to medical transport under international humanitarian law.
 
 Crucially, the model uncovers a \textbf{21.8\% ``hidden toll''} of events—116 incidents that were identified through narrative NLP but lacked any formally structured health actor tags in the source dataset. This highlight's the model's utility in capturing the full scope of humanitarian impact that traditional categorical filters overlook. Regionally, the burden of HICE is heavily concentrated in the central and northwestern corridors, with Sagaing (n=117), Mandalay (n=68), and Yangon (n=51) accounting for nearly 45\% of the national total.
 
@@ -338,7 +327,7 @@ To prioritize humanitarian response in a resource-constrained environment, the f
 This weighting schema deliberately prioritizes the disruption of medical infrastructure and specific health hazards (HICE) over general kinetic fatality counts. 
 The rationale is that while fatalities represent a retrospective outcome, the degradation of health infrastructure signals an ongoing and future threat to the surviving population's well-being. A region with high infrastructure damage but lower immediate fatalities may actually face a higher risk of long-term mortality due to the loss of preventative care and emergency response capabilities. 
 
-Applying this metric identifies the \textbf{Sagaing Region} as the most critical ``Red Zone'' for health assistance, driven by the sheer volume of attacks on clinics and the seizure of medical supplies. In parallel, the model highlights \textbf{Kayah} and \textbf{Rakhine} as secondary priority zones due to their extreme lethality indices. As previously illustrated in the Regional Risk Matrix (Fig. \ref{fig:risk_matrix}), the quadrant-based view distinguishes high-frequency conflict zones requiring sustained logistical support from high-lethality areas demanding immediate trauma intervention. This distinction supports the evidence-based prioritization of humanitarian medical resources, allowing aid organizations to tailor their responses—deploying surgical teams to Kayah while focusing on clinic rehabilitation and supply chain restoration in Sagaing. 
+Applying this metric identifies the \textbf{Sagaing Region} as the most critical ``Red Zone'' for health assistance, driven by the sheer volume of attacks on clinics and the seizure of medical supplies. In parallel, the model highlights \textbf{Kayah} and \textbf{Rakhine} as secondary priority zones due to their extreme lethality indices. As previously illustrated in the Regional Risk Matrix (Fig. \ref{fig:risk_matrix}), the quadrant-based view distinguishes high-frequency conflict zones requiring sustained logistical support from high-lethality areas demanding immediate trauma intervention. This distinction supports the evidence-based prioritization of humanitarian medical resources, allowing aid organizations to tailor their responses and deploying surgical teams to Kayah while focusing on clinic rehabilitation and supply chain restoration in Sagaing. 
 
 % --- Section VII: Discussion ---
 \section{Discussion} 
@@ -371,7 +360,7 @@ The \textit{Myanmar Conflict Observatory} is optimized for high precision to ens
 
 \textbf{The Hidden Toll (NLP Value-Add):} The framework identified a \textbf{21.8\% ``hidden toll''} (n=116) of incidents that lacked any formally structured health actor tags in the ACLED dataset but were verified through qualitative narrative analysis. These typically include structural damage (arson or shelling of rural clinics) where no specific personnel were mentioned, causing them to be overlooked by standard categorical filters.
 
-\textbf{The Recall Gap (Ontology Constraints):} Conversely, an audit revealed a \textbf{Recall Gap} consisting of events formally tagged by ACLED as health-related but rejected by the NLP engine (n=275). Forensic analysis of these ``missed'' events identifies two primary causes:
+\textbf{The Recall Gap (Ontology Constraints):} Conversely, an audit revealed a Recall Gap consisting of events formally tagged by ACLED as health-related but rejected by the NLP engine (n=275). Forensic analysis of these ``missed'' events identifies two primary causes:
 \begin{enumerate}
     \item \textbf{Participative vs. Impactful Events:} The majority of rejected incidents (approx. 70\%) involve health workers participating in the conflict (e.g., Civil Disobedience Movement protests) rather than being targets of it. While these are sociopolitically significant, they do not meet the study's strict criteria for a ``Health-Impacting Conflict Event'' (HICE).
     \item \textbf{Keyword Sensitivity:} The current NLP ontology is optimized for primary medical roles (Doctors, Nurses, Hospitals). Niche healthcare roles, such as dentists or community health assistants, and complex passive-voice descriptions of supply-chain disruption are less likely to be captured, suggesting that the 533-event pool should be viewed as a conservative minimum.
